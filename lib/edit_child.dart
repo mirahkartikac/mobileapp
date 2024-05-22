@@ -5,10 +5,10 @@ class EditChildPage extends StatefulWidget {
   final int index; // Index dari data anak yang akan diedit
   final GetStorage storage = GetStorage();
 
-  EditChildPage({Key? key, required this.index}) : super(key: key);
+  EditChildPage({super.key, required this.index});
 
   @override
-  _EditChildPageState createState() => _EditChildPageState();
+  State<EditChildPage> createState() => _EditChildPageState();
 }
 
 class _EditChildPageState extends State<EditChildPage> {
@@ -39,11 +39,19 @@ class _EditChildPageState extends State<EditChildPage> {
       'tgl_lahir': '',
       'telepon': '',
     };
-    nomorIndukController = TextEditingController(text: _anakList.isNotEmpty ? _anakList[widget.index]["nomor_induk"] ?? defaultChildData["nomor_induk"] : defaultChildData["nomor_induk"]);
-    namaController = TextEditingController(text: _anakList.isNotEmpty ? _anakList[widget.index]["nama"] ?? defaultChildData["nama"] : defaultChildData["nama"]);
-    alamatController = TextEditingController(text: _anakList.isNotEmpty ? _anakList[widget.index]["alamat"] ?? defaultChildData["alamat"] : defaultChildData["alamat"]);
-    tanggalLahirController = TextEditingController(text: _anakList.isNotEmpty ? _anakList[widget.index]["tgl_lahir"] ?? defaultChildData["tgl_lahir"] : defaultChildData["tgl_lahir"]);
-    noTeleponController = TextEditingController(text: _anakList.isNotEmpty ? _anakList[widget.index]["telepon"] ?? defaultChildData["telepon"] : defaultChildData["telepon"]);
+    if (_anakList.isNotEmpty && widget.index < _anakList.length) {
+      nomorIndukController = TextEditingController(text: _anakList[widget.index]["nomor_induk"] ?? defaultChildData["nomor_induk"]);
+      namaController = TextEditingController(text: _anakList[widget.index]["nama"] ?? defaultChildData["nama"]);
+      alamatController = TextEditingController(text: _anakList[widget.index]["alamat"] ?? defaultChildData["alamat"]);
+      tanggalLahirController = TextEditingController(text: _anakList[widget.index]["tgl_lahir"] ?? defaultChildData["tgl_lahir"]);
+      noTeleponController = TextEditingController(text: _anakList[widget.index]["telepon"] ?? defaultChildData["telepon"]);
+    } else {
+      nomorIndukController = TextEditingController(text: defaultChildData["nomor_induk"]);
+      namaController = TextEditingController(text: defaultChildData["nama"]);
+      alamatController = TextEditingController(text: defaultChildData["alamat"]);
+      tanggalLahirController = TextEditingController(text: defaultChildData["tgl_lahir"]);
+      noTeleponController = TextEditingController(text: defaultChildData["telepon"]);
+    }
   }
 
   @override
@@ -91,14 +99,22 @@ class _EditChildPageState extends State<EditChildPage> {
 
   void _simpanPerubahan() {
     // Simpan perubahan data anak ke penyimpanan lokal
-    List<Map<String, dynamic>>? existingChildren = widget.storage.read<List<Map<String, dynamic>>>("children");
-    existingChildren?[widget.index] = {
-      'nomor_induk': nomorIndukController.text,
-      'nama': namaController.text,
-      'alamat': alamatController.text,
-      'tgl_lahir': tanggalLahirController.text,
-      'telepon': noTeleponController.text
-    };
+    List<dynamic>? existingChildrenDynamic = widget.storage.read<List<dynamic>>("children");
+    List<Map<String, dynamic>> existingChildren = existingChildrenDynamic != null 
+        ? List<Map<String, dynamic>>.from(existingChildrenDynamic) 
+        : [];
+    if (widget.index < existingChildren.length) {
+      existingChildren[widget.index] = {
+        'nomor_induk': nomorIndukController.text,
+        'nama': namaController.text,
+        'alamat': alamatController.text,
+        'tgl_lahir': tanggalLahirController.text,
+        'telepon': noTeleponController.text
+      };
+    } else {
+      // Handle case where index is out of range
+      return;
+    }
     widget.storage.write("children", existingChildren);
     // Kembali ke halaman sebelumnya setelah menyimpan perubahan
     Navigator.pop(context);

@@ -42,12 +42,6 @@ class _HomePageState extends State<HomePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            BottomNavItem(title: "Add Child", svgSrc: "assets/images/add.svg", press: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AddChild())
-              );
-            },),
             BottomNavItem(title: "Child", svgSrc: "assets/images/children.svg", press: (){
               Navigator.push(
                 context,
