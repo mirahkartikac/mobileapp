@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
             color: Colors.white,
           ),
           Text(
-            "GrowWell",
+            "S & L",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           Text(
-            "Aplikasi Pemantauan Gizi dan Tumbuh Kembang Anak",
+            "Save and Lend : Aplikasi Simpan Pinjam Terdepan",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.normal,

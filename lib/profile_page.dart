@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobileapp/home_page.dart';
 import 'package:mobileapp/login_page.dart';
+import 'package:mobileapp/view_anggota.dart';
 
 class ProfilePage extends StatefulWidget{
   const ProfilePage({super.key});
@@ -36,19 +37,20 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            BottomNavItem(title: "Trending", svgSrc: "assets/images/trending.svg", press: (){},),
+            BottomNavItem(title: "Child", svgSrc: "assets/images/children.svg", press: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ViewAnggotaPage())
+              );
+            },
+            ),
             BottomNavItem(title: "Home", svgSrc: "assets/images/calendar.svg", press: (){
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const HomePage())
               );
             },),
-            BottomNavItem(title: "Saya", svgSrc: "assets/images/account.svg", isActive: true, press: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilePage())
-              );
-            },),
+            BottomNavItem(title: "Saya", svgSrc: "assets/images/account.svg", isActive: true, press: (){},),
           ],
         ),
       ),

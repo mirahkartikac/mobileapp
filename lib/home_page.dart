@@ -2,10 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mobileapp/add_child.dart';
 import 'package:mobileapp/category_card.dart';
 import 'package:mobileapp/profile_page.dart';
-import 'package:mobileapp/view_child.dart';
+import 'package:mobileapp/view_anggota.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
@@ -42,12 +41,13 @@ class _HomePageState extends State<HomePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            BottomNavItem(title: "Child", svgSrc: "assets/images/children.svg", press: (){
+            BottomNavItem(title: "Anggota", svgSrc: "assets/images/children.svg", press: (){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ViewChildPage())
+                MaterialPageRoute(builder: (context) => ViewAnggotaPage())
               );
-            },),
+            },
+            ),
             BottomNavItem(title: "Home", svgSrc: "assets/images/calendar.svg", isActive: true, press: (){},),
             BottomNavItem(title: "Saya", svgSrc: "assets/images/account.svg",press: (){
               Navigator.push(
