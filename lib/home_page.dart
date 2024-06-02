@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mobileapp/category_card.dart';
 import 'package:mobileapp/profile_page.dart';
+import 'package:mobileapp/tabungan/list_tabungan.dart';
+import 'package:mobileapp/transaksi/jenis_transaksi.dart';
 import 'package:mobileapp/view_anggota.dart';
 
 class HomePage extends StatefulWidget{
@@ -121,22 +123,46 @@ class _HomePageState extends State<HomePage> {
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
                       
-                      children: const <Widget>[
+                      children: <Widget>[
                         CategoryCard(
-                          svgSrc: "assets/images/healthy (1).svg",
-                          title: "Kalkulator Gizi",
+                          svgSrc: "assets/images/payment.svg", // Assuming SVG source is provided here
+                          title: "Transaksi",
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const JenisTranx())
+                            );
+                          },
                         ),
                         CategoryCard(
-                          svgSrc: "assets/images/eat-healthy (1).svg",
-                          title: "Asupan Sehat",
+                          svgSrc: "assets/images/payment (1).svg",
+                          title: "Tabungan Anggota",
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const ListTabungan())
+                            );
+                          },
                         ),
                         CategoryCard(
-                          svgSrc: "assets/images/sleep.svg",
-                          title: "Kualitas Tidur",
+                          svgSrc: "",
+                          title: "Insert Transaksi",
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const JenisTranx())
+                            );
+                          },
                         ),
                         CategoryCard(
-                          svgSrc: "assets/images/healthy-study.svg",
-                          title: "Pembelajaran Kesehatan",
+                          svgSrc: "",
+                          title: "Saldo Anggota",
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const ListTabungan())
+                            );
+                          },
                         ),
                         
                       ],
