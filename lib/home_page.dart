@@ -6,6 +6,7 @@ import 'package:mobileapp/category_card.dart';
 import 'package:mobileapp/profile_page.dart';
 import 'package:mobileapp/tabungan/list_tabungan.dart';
 import 'package:mobileapp/transaksi/jenis_transaksi.dart';
+import 'package:mobileapp/transaksi/list_bunga.dart';
 import 'package:mobileapp/view_anggota.dart';
 
 class HomePage extends StatefulWidget{
@@ -145,22 +146,12 @@ class _HomePageState extends State<HomePage> {
                           },
                         ),
                         CategoryCard(
-                          svgSrc: "",
-                          title: "Insert Transaksi",
+                          svgSrc: "assets/images/discount.svg",
+                          title: "Bunga",
                           press: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const JenisTranx())
-                            );
-                          },
-                        ),
-                        CategoryCard(
-                          svgSrc: "",
-                          title: "Saldo Anggota",
-                          press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const ListTabungan())
+                              MaterialPageRoute(builder: (context) => const ListBunga())
                             );
                           },
                         ),

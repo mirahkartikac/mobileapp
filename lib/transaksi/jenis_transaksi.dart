@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:dio/dio.dart';
+import 'package:mobileapp/transaksi/detail_jenis_tranx.dart';
 
 class JenisTranx extends StatefulWidget {
   const JenisTranx({super.key});
@@ -38,6 +39,15 @@ class _JenisTranxState extends State<JenisTranx> {
     }
   }
 
+  void navigateToDetail(JenisTransaksi jenisTransaksi) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailPage(jenisTransaksi: jenisTransaksi),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,16 +77,21 @@ class _JenisTranxState extends State<JenisTranx> {
                   final multiply = jenisTransaksi.multiplyTransaksi == '1'
                       ? 'Penambahan'
                       : 'Pengurangan';
-                  return Card(
-                    margin: EdgeInsets.all(8.0),
-                    child: ListTile(
-                      title: Text(jenisTransaksi.namaTransaksi),
-                      subtitle: Row(
-                        children: [
-                          Icon(Icons.wallet_membership, size: 14),
-                          SizedBox(width: 6),
-                          Text(multiply),
-                        ],
+                  return InkWell(
+                    onTap: () {
+                      navigateToDetail(jenisTransaksi);
+                    },
+                    child: Card(
+                      margin: EdgeInsets.all(8.0),
+                      child: ListTile(
+                        title: Text(jenisTransaksi.namaTransaksi),
+                        subtitle: Row(
+                          children: [
+                            Icon(Icons.wallet_membership, size: 14),
+                            SizedBox(width: 6),
+                            Text(multiply),
+                          ],
+                        ),
                       ),
                     ),
                   );
